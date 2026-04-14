@@ -4,8 +4,10 @@ with open("logs/system.log", "r") as f:
 print("---------- SYSTEM LOG ANALYSIS ----------")
 for line in lines:
 	if "CPU" in line:
-	cpu_val = float(line.split("CPU:")[1].split("%")[0].strip())
-	if cpu_val > 80:
-		print(f" !!!!!! HIGH CPU ALERT: {line.strip()} !!!!!!")
-	else:
-		print(f"Normol: {line,strip()}")
+		raw = line.split("CPU:")[1].split("|")[0].strip()
+		print(f"DEBUG raw value: '{raw}'")
+		cpu_val = float(raw)
+		if cpu_val > 80:
+			print(f" !!!!!! HIGH CPU ALERT: {line.strip()} !!!!!!")
+		else:
+			print(f"Normol: {line.strip()}")
